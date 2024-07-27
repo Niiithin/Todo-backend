@@ -9,7 +9,8 @@
     "build": "tsc",
     "prod":"pm2 start dist/app.js",
     "prod-list":"pm2 list",
-    "prod-stop":"pm2 stop app"
+    "prod-stop":"pm2 stop app",
+    "prod-logs":"pm2 logs"
   },
   "keywords": [],
   "author": "",
