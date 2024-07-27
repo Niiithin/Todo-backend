@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "7cbe304d-3fb9-4ccc-89c6-7a2f43861519",
+		"name": "todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30566762"
+	},
+	"item": [
+		{
+			"name": "registerUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"nithin\",\r\n    \"email\": \"nithin2@gmail.com\",\r\n    \"password\": \"nithin433\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/users/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"nithin1@gmail.com\",\r\n    \"password\": \"nithin433\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/users/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTodoStatus",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"Completed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/todos/update-todo-status/66a4824d696e50361cd9d17f",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"update-todo-status",
+						"66a4824d696e50361cd9d17f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTodo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Todo 1\",\r\n    \"body\": \"This is a valid body for the todo item.\",\r\n    \"scheduleDate\": \"2023-07-28T10:00:00Z\",\r\n    \"dueDate\": \"2023-07-29T18:00:00Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/todos/create-todo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"create-todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTodos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "editTodo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/todos/update-todo-status/66a4930ce571e33b1708b815",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"update-todo-status",
+						"66a4930ce571e33b1708b815"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchTodo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/todos/search?searchTerm=Todo t&page=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"todos",
+						"search"
+					],
+					"query": [
+						{
+							"key": "searchTerm",
+							"value": "Todo t"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTodosByDate",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "inviteNotification",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"receiverEmail\": \"test@gmail.com\",\r\n    \"todoId\": \"66a49e25ff71f40e271aac7e\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/notifications/invite",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"notifications",
+						"invite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetchNotifications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{testToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/notifications/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"notifications",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "handleTodoInvite",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/notifications/:notificationId",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"notifications",
+						":notificationId"
+					],
+					"variable": [
+						{
+							"key": "notificationId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "todoById",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
