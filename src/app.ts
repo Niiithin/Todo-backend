@@ -1,6 +1,6 @@
 import "./utils/config-env";
 import express from "express";
-
+const cors = require("cors");
 import { connectDB } from "./utils/db";
 import "./model/user.model";
 import "./model/todo.model";
@@ -14,7 +14,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use("/api/users", userRouter);
 app.use("/api/todos", todoRouter);
 app.use("/api/notifications", notificationRouter);

@@ -7,10 +7,10 @@
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc",
-    "prod":"pm2 start dist/app.js",
-    "prod-list":"pm2 list",
-    "prod-stop":"pm2 stop app",
-    "prod-logs":"pm2 logs"
+    "prod": "pm2 start dist/app.js",
+    "prod-list": "pm2 list",
+    "prod-stop": "pm2 stop app",
+    "prod-logs": "pm2 logs"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",

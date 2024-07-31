@@ -20,7 +20,7 @@ router.post(
   validateRequestBody,
   inviteUserByEmail
 );
-router.get("/", authenticate, fetchUserNotifications);
+router.get("/getNotifications", authenticate, fetchUserNotifications);
 router.patch(
   "/:notificationId",
   authenticate,

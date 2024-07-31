@@ -40,9 +40,9 @@ router.put(
   validateRequestBody,
   updateTodoStatus
 );
-router.get("/", authenticate, getAllTodos);
+router.get("/getAllTodos", authenticate, getAllTodos);
 router.get("/search", authenticate, searchTodos);
 router.get("/filter", authenticate, getTodosByDate);
-router.get("/:todoId", authenticate, getTodoById);
+router.get("/get-todo-by-id/:todoId", authenticate, getTodoById);
 
 export default router;

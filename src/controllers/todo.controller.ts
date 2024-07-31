@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ITodo, Todo } from "../model/todo.model";
 import { TodoStatus } from "../enums/todo.enum";
-import { Types } from "mongoose";
+import { Types, FilterQuery } from "mongoose";
 
 const PAGE_SIZE = 10;
 
@@ -39,7 +39,7 @@ export const editTodo = async (
 ) => {
   try {
     const { id } = req.params;
-    const { title, description } = req.body;
+    const { title, description, scheduleDate, dueDate } = req.body;
     const todo = await Todo.findById(id);
     if (!todo) {
       return res
@@ -54,6 +54,10 @@ export const editTodo = async (
     }
     if (title) todo.title = title;
     if (description) todo.description = description;
+    if (scheduleDate) todo.scheduleDate = scheduleDate;
+    if (dueDate) todo.dueDate = dueDate;
+    if (scheduleDate || dueDate) todo.status = TodoStatus.Postponed;
+
     await todo.save();
     return res.json({
       success: true,
@@ -167,10 +171,10 @@ export const searchTodos = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const searchTerm = req.query.searchTerm as string;
-    if (!searchTerm || searchTerm.length < 5) {
+    if (!searchTerm || searchTerm.length < 3) {
       return res.status(400).json({
         success: false,
-        message: "Search term must be at least 5 characters long",
+        message: "Search term must be at least 3 characters long",
       });
     }
     const userId = req.user._id;
@@ -230,6 +234,7 @@ export const getTodosByDate = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const dateString = req.query.date as string;
+    const todoStatus = req.query.status as string;
     if (!dateString) {
       return res.status(400).json({
         success: false,
@@ -246,7 +251,7 @@ export const getTodosByDate = async (
     const userId = req.user._id;
     const startOfDay = new Date(date.setHours(0, 0, 0, 0));
     const endOfDay = new Date(date.setHours(23, 59, 59, 999));
-    const query = {
+    const query: FilterQuery<ITodo> = {
       $and: [
         {
           $or: [{ creator: userId }, { collaboration: userId }],
@@ -260,6 +265,9 @@ export const getTodosByDate = async (
         },
       ],
     };
+    if (todoStatus !== undefined && todoStatus !== "") {
+      (query.$and as any[]).push({ status: todoStatus });
+    }
     const todos = await Todo.find(query)
       .skip((page - 1) * PAGE_SIZE)
       .limit(PAGE_SIZE)
