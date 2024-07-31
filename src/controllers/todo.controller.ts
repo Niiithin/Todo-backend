@@ -147,6 +147,7 @@ export const getAllTodos = async (
         description: 1,
         status: 1,
         dueDate: 1,
+        collaboration: 1,
       });
     const totalTodos = await Todo.countDocuments({
       $or: [{ creator: userId }, { collaboration: userId }],
